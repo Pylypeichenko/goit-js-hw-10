@@ -32,7 +32,7 @@ function renderSingleMarkup(countries) {
   const langs = Object.values(countries[0].languages).join(', ');
 
   const singleMarkup = countries.map(
-    country => `<p><img src=${country.flags.svg} alt=${country.name.official} height=20 /> ${country.name.official}</p>
+    country => `<p class='js-country-name'><img src=${country.flags.svg} alt=${country.name.official} height=25 /> ${country.name.official}</p>
   <p>Capital: ${country.capital}</p>
   <p>Population: ${country.population}</p>
   <p>Languages: ${langs}</p>`
@@ -52,7 +52,7 @@ function renderCountryList(countries) {
   const markup = countries
     .flatMap(
       country =>
-        `<p><img src=${country.flags.svg} alt=${country.name.official} height=12 /> ${country.name.official}</p>`
+        `<p  ><img src=${country.flags.svg} alt=${country.name.official} height=12 /> ${country.name.official}</p>`
     )
     .join('');
 
