@@ -8,6 +8,7 @@ const countryList = document.querySelector('.country-list');
 const singleCountryInfo = document.querySelector('.country-info');
 
 const DEBOUNCE_DELAY = 300;
+const BASIC_URL = 'https://restcountries.com/v3.1';
 
 input.addEventListener('input', debounce(makeCountryList, DEBOUNCE_DELAY));
 Notify.info('Please start typing the name of any country');
@@ -23,7 +24,9 @@ function makeCountryList() {
         renderSingleMarkup(countries);
       }
     })
-    .catch(onError);
+    .catch(error => {
+      onError(error);
+    });
 }
 
 function renderSingleMarkup(countries) {
@@ -59,12 +62,17 @@ function renderCountryList(countries) {
   countryList.innerHTML = markup;
 }
 
-function onError() {
-  if (input.value === '') {
-    Notify.info('Please start typing the name of any country');
-  } else {
-    Notify.failure('Oops, there is no country with that name :(');
-  }
+function onError(error) {
   countryList.innerHTML = '';
   singleCountryInfo.innerHTML = '';
+
+  console.log(error);
+
+  if (input.value === '') {
+    Notify.info('Please start typing the name of any country');
+    throw new Error('This is an empty input');
+  } else {
+    Notify.failure('Oops, there is no country with that name :(');
+    throw new Error('Some cat is typing qwe-qwe-qwe');
+  }
 }
