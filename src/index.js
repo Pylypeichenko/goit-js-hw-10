@@ -11,7 +11,7 @@ const DEBOUNCE_DELAY = 300;
 const BASIC_URL = 'https://restcountries.com/v3.1';
 
 input.addEventListener('input', debounce(makeCountryList, DEBOUNCE_DELAY));
-Notify.info('Please start typing the name of any country');
+Notify.info('Please start typing the name of any country IN ENGLISH');
 
 function makeCountryList() {
   fetchCountries()
